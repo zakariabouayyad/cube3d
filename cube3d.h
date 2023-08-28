@@ -27,8 +27,27 @@
 # define ESC_KEY 53
 # define WIN_CLOSE 17
 
+typedef enum s_flags
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	FLOR,
+	CEILING,
+}	t_flags;
+
+typedef struct s_color
+{
+	int	red;
+	int	green;
+	int	blue;
+}	t_color;
+
 typedef struct s_map {
 	/* verify if im using all of this variables */
+	t_color		flor_color;
+	t_color		ceiling_color;
 	char		**map;
 	int			row;
 	int			col;
@@ -42,7 +61,7 @@ typedef struct s_map {
 
 typedef struct s_data {
 	/* verify if im using all of this variables */
-	// t_map map;
+	t_map map;
 	char **av;
 	int fd;
 	int i;
@@ -51,11 +70,24 @@ typedef struct s_data {
 	void	*img;
 	char	*str;
 	char	*maps;
-	char	**map;
+	// char	**map;
 
 	void	*mlx;
 	void	*mlx_win;
 }				t_data;
+
+
+/*
+** cube3d parsing
+*/
+void	parsing(int ac, t_data *data);
+void	extention_and_permission(int ac, t_data *data);
+void	check_texture_color(t_data *data);
+void	check_texture(char **map, t_data *data);
+void	check_color(char **map, t_data *data);
+bool	is_whitespace(const char *str);
+char	**filter_whitespace_lines(char **lines);
+void	remove_whitespace_beginning(char **lines);
 
 
 /*

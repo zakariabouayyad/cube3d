@@ -10,7 +10,7 @@ RM = rm -f
 
 LIBSRC = $(addprefix libft/, ft_atoi.c ft_itoa.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_strjoin.c ft_strlen.c ft_strncmp.c ft_strrchr.c ft_substr.c get_next_line.c get_next_line_utils.c)
 
-SRC = cube3d.c $(LIBSRC)
+SRC = cube3d.c parsing.c parsing_color.c parsing_texture.c more_parsing.c $(LIBSRC)
 
 OBJ = $(SRC:.c=.o)
 
