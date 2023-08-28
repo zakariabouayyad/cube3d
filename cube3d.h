@@ -37,6 +37,13 @@ typedef enum s_flags
 	CEILING,
 }	t_flags;
 
+typedef struct s_player
+{
+	int	x;
+	int	y;
+	char starting_pos;
+}	t_player;
+
 typedef struct s_color
 {
 	int	red;
@@ -56,7 +63,8 @@ typedef struct s_map {
 	char		*west_texture;
 	char		*east_texture;
 	char		*filename;
-	char		starting_pos;
+	t_player	player;
+	// char		starting_pos;
 }					t_map;
 
 typedef struct s_data {
