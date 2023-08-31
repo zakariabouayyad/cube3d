@@ -8,13 +8,14 @@
 # include <ctype.h>
 # include <string.h>
 # include <fcntl.h>
+# include <math.h>
 # include <mlx.h>
 
 # define TILE_SIZE 32
 # define NUM_COL 14
 # define NUM_ROWS 33
-# define WINDOW_WIDTH NUM_COL * TILE_SIZE
-# define WINDOW_HEIGHT NUM_ROWS * TILE_SIZE
+# define WINDOW_WIDTH 720
+# define WINDOW_HEIGHT 1080
 
 /*     keys     */
 
@@ -39,9 +40,15 @@ typedef enum s_flags
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
-	char starting_pos;
+	double	x;
+	double	y;
+	double turn_orientation;// -1 left and +1 right
+	double walk_orientation;// -1 back and +1 front
+	double move_speed;
+	double turn_speed;
+	double radius;
+	double facing_angle;
+	char starting_pos;//double check what is this for (used or not)
 }	t_player;
 
 typedef struct s_color
@@ -53,11 +60,11 @@ typedef struct s_color
 
 typedef struct s_map {
 	/* verify if im using all of this variables */
-	t_color		flor_color;
-	t_color		ceiling_color;
 	char		**map;
 	int			row;
 	int			col;
+	t_color		flor_color;
+	t_color		ceiling_color;
 	char		*north_texture;
 	char		*south_texture;
 	char		*west_texture;
@@ -76,10 +83,12 @@ typedef struct s_data {
 	int j;
 
 	void	*img;
+	void	*img2;
 	char	*str;
 	char	*maps;
 	// char	**map;
-
+	int		window_width;
+	int		window_height;
 	void	*mlx;
 	void	*mlx_win;
 }				t_data;
